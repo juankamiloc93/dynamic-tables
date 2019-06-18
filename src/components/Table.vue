@@ -23,6 +23,7 @@
         <hr>
         <!--Table-->
         <table class="table table-hover table-bordered">
+            <!--Columns-->
             <thead>
                 <tr>
                     <th v-for="(item, index) of getHead" :key="index">                        
@@ -41,7 +42,7 @@
                                     <span>{{item['hight-attribute']}}</span>
                                 </a>
                                 <a v-for="(filtersItem, filtersIndex) of filters[index]" :key="filtersIndex" class="dropdown-item" @click="filterColumn(item['name'], filtersItem)">
-                                    <span>{{filtersItem}}</span>
+                                    <span>{{filtersItem}}</span><button class="btn" @click="dropFilter(index, filtersIndex)">X</button>
                                 </a>
                                 <a class="dropdown-item">
                                     <div class="btn-group">
@@ -54,9 +55,15 @@
                     </th>                   
                 </tr>                
             </thead>
+            <!--body-->
             <tbody>
-                <tr v-for="bodyItem of filterSearchBody" :key="bodyItem.index">
-                    <td v-for="headItem of getHead" :key="headItem.index">{{bodyItem[headItem['name']]}}</td>                                     
+                <tr v-for="(bodyItem, bodyIndex) of filterSearchBody" :key="bodyIndex">                    
+                    <td v-for="(headItem, headIndex)  of getHead" :key="headIndex">
+                        <span v-if="headItem['id']">
+                            <input type="checkbox" @click="addIdFilter(headIndex, headItem['name'], bodyItem)">
+                        </span>
+                        <span>{{bodyItem[headItem['name']]}}</span>
+                    </td>                                     
                 </tr>               
             </tbody>
         </table>                               
@@ -75,13 +82,13 @@ export default {
             search: '',
             filterSelect: 'Chose filter',
             newFilter: '',
-            filters: []
+            filters: [],            
         }        
     },
     methods: {
         changeFilterSelect(index){
-            this.filterSelect = this.getHead[index].name
-            //this.restoreFilterSelect()           
+            this.filterSelect = this.head[index].name
+                    
         },
         restoreFilterSelect(){
             this.filterSelect = 'Chose filter'
@@ -98,6 +105,15 @@ export default {
                 this.filters[columnIndex].push(this.newFilter)
                 this.newFilter = ''
             }
+        },
+        addIdFilter(columnIndex, headName, bodyItem){
+            if(bodyItem){
+                this.newFilter = bodyItem[headName]
+                this.addFilter(columnIndex);
+            }
+        },
+        dropFilter(columnIndex, filtersIndex){
+            this.filters[columnIndex].splice(filtersIndex, 1)
         }
     },
     computed: {
@@ -106,7 +122,7 @@ export default {
                 return this.body.filter((bodyItem) => {
                     var isMatch = false                                                                         
                     for(var index=0; !isMatch && index<this.getHead.length; index++) {                                                                                
-                        if(bodyItem[this.getHead[index].name].toLowerCase().match(this.search.toLowerCase())){                                                      
+                        if(bodyItem[this.getHead[index].name].toString().toLowerCase().match(this.search.toLowerCase())){                                                      
                            isMatch = true
                         }
                     }                 
@@ -114,7 +130,7 @@ export default {
                 })
             }else{
                 return this.body.filter((bodyItem) => {
-                    return bodyItem[this.filterSelect].toLowerCase().match(this.search.toLowerCase())
+                    return bodyItem[this.filterSelect].toString().toLowerCase().match(this.search.toLowerCase())
                 })
             }          
         },

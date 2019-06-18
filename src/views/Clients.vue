@@ -17,7 +17,8 @@ export default {
             headData: [
 	            {
 		            "name": "Name",
-		            "visible": true
+					"visible": true,
+					"id": false
 	            },
 	            {
 		            "name": "Gender",

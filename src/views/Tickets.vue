@@ -17,7 +17,8 @@ export default {
             headData: [
                 {                   
 		            "name": "User Name",		            
-                    "visible": true		
+                    "visible": true,
+                    "id": false	
 	            },
 	            {                   
 		            "name": "Subject",		            
