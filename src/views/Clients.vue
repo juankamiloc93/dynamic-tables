@@ -22,10 +22,11 @@ export default {
 	            },
 	            {
 		            "name": "Gender",
-		            "visible": true,
-		            "low-attribute": "Female",
-		            "hight-attribute": "Male",
-		            "visible": true
+					"visible": true,
+					"filters": [
+						"Female",
+						"Male"
+					]		            
 	            },
 	            {
 		            "name": "Age",
@@ -33,17 +34,21 @@ export default {
 	            },	
 	            {
 		            "name": "Country",
-		            "visible": true,
-		            "low-attribute": "Colombia",
-		            "medium-attribute": "USA",
-		            "hight-attribute": "UE"
+					"visible": true,
+					"filters": [
+						"Colombia",
+						"USA",
+						"EU"
+					]		            
 	            },
 	            {
 		            "name": "Degree",
-		            "visible": true,
-		            "low-attribute": "Tecnic",
-		            "medium-attribute": "Professional",
-		            "hight-attribute": "Doctor"
+					"visible": true,
+					"filters": [
+						"Tecnic",
+						"Professional",
+						"Doctor"
+					]		           
 	            },
 	            {
 		            "name": "Email",

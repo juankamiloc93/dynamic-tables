@@ -18,32 +18,40 @@ export default {
                 {                   
 		            "name": "User Name",		            
                     "visible": true,
-                    "id": false	
+                    "id": true,	
+                    "filters": {}
 	            },
 	            {                   
 		            "name": "Subject",		            
-		            "visible": true				
+                    "visible": true,
+                    "filters": {}                    	
             	},
 	            {                    
-		            "name": "Customer Satisfaction",		           
-		            "low-attribute": "50%",
-		            "medium-attribute": "80%",
-                    "hight-attribute": "90",
-                    "visible": true	
+		            "name": "Customer Satisfaction",
+                    "visible": true,
+                    "filters": [
+                        {"name": "50%", "status": true},
+                        {"name": "80%", "status": true},
+                        {"name": "90%", "status": true}
+                    ]		                              
 	            },
 	            {                    
-		            "name": "Priority",		            
-		            "low-attribute": "Low",
-		            "medium-attribute": "Medium",
-                    "hight-attribute": "Hight",
-                    "visible": true	
+                    "name": "Priority",
+                    "visible": true,
+                    "filters": [
+                        {"name": "Low", "status": true},
+                        {"name": "Medium", "status": true},
+                        {"name": "Hight", "status": true}
+                    ]		                              
 	            },
 	            {                    
-                    "name": "Status",                    
-                    "low-attribute": "Pending",
-		            "medium-attribute": "Opened",
-                    "hight-attribute": "Solved",
-                    "visible": true		            	
+                    "name": "Status",
+                    "visible": true,
+                    "filters": [
+                        {"name": "Pending", "status": true},
+                        {"name": "Opened", "status": true},
+                        {"name": "Solved", "status": true}
+                    ]                		            	
 	            }
             ],
             tickestData: [
@@ -59,7 +67,7 @@ export default {
                     "Subject": "I need help!, can't login my playbox account",
                     "Customer Satisfaction": "80%", 
                     "Priority": "Medium",
-                    "Status": "Open"
+                    "Status": "Opened"
                 },
                 {
                     "User Name": "Emiliano Cosenza", 
