@@ -19,14 +19,13 @@
                     </li>                    
                 </ul>
             </div>        
-        </div>
-        <hr>
+        </div>        
         <!--Table-->
         <table class="table table-hover table-bordered">
             <!--Columns-->
             <thead>
                 <tr>
-                    <th v-for="(itemHead, indexHead) of getHead" :key="indexHead">                        
+                    <th class="bg-dark" v-for="(itemHead, indexHead) of getHead" :key="indexHead">                        
                         <Column
                             :name="itemHead['name']"
                             :filters="itemHead['filters']">
@@ -37,11 +36,8 @@
             <!--body-->
             <tbody>
                 <tr v-for="(bodyItem, bodyIndex) of getBody" :key="bodyIndex">                    
-                    <td v-for="(headItem, headIndex)  of getHead" :key="headIndex">
-                        <span v-if="headItem['id']">
-                            <input type="checkbox">
-                        </span>
-                        <span>{{bodyItem[headItem['name']]}}</span>
+                    <td v-for="(headItem, headIndex)  of getHead" :key="headIndex" :class="getStyle(headItem['filters'], bodyItem[headItem['name']])">
+                       <span>{{bodyItem[headItem['name']]}}</span>
                     </td>                                     
                 </tr>               
             </tbody>
@@ -59,12 +55,26 @@ export default {
         body: {}
     },
     components: {
-        Column
+        Column        
     },
     data() {
         return {
-            search: '',                     
+            search: ''                                
         }        
+    },
+    methods: {
+        getStyle(filters, value){
+            var style = ''
+            var find = false
+            for(var index=0; !false && filters && index<filters.length; index++){
+                if(value.toString() == filters[index].name){
+                    style = filters[index].style
+                    find = true
+                }
+            }
+            console.log(style)
+            return style
+        }
     },
     computed: {
         getBody: function(){

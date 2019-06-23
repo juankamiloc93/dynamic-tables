@@ -1,7 +1,7 @@
 <template>
     <div class="btn-group">
-        <span v-if="!filters">{{name}}</span>
-        <button v-if="filters" class="btn btn-outline-success dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <span v-if="!filters" class="text-light">{{name}}</span>
+        <button v-if="filters" class="btn btn-outline-light dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <span>{{name}} </span>
         </button>
          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">                                                              

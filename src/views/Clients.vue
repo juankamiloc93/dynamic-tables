@@ -18,14 +18,17 @@ export default {
 	            {
 		            "name": "Name",
 					"visible": true,
-					"id": false
+					"id": false,
+					"filters": [
+
+					]
 	            },
 	            {
 		            "name": "Gender",
 					"visible": true,
 					"filters": [
-						"Female",
-						"Male"
+						{"name": "Female", "status": true},
+						{"name": "Male", "status": true}
 					]		            
 	            },
 	            {
@@ -36,18 +39,18 @@ export default {
 		            "name": "Country",
 					"visible": true,
 					"filters": [
-						"Colombia",
-						"USA",
-						"EU"
+						{"name": "Colombia", "status": true, "style": "alert alert-warning"},
+						{"name": "USA", "status": true},
+						{"name": "EU", "status": true}
 					]		            
 	            },
 	            {
 		            "name": "Degree",
 					"visible": true,
 					"filters": [
-						"Tecnic",
-						"Professional",
-						"Doctor"
+						{"name": "Tecnic", "status": true, "style": "alert alert-primary"},
+						{"name": "Professional", "status": true, "style": "alert alert-success"},
+						{"name": "Doctor", "status": true, "style": "alert alert-dark"}
 					]		           
 	            },
 	            {
@@ -109,7 +112,7 @@ export default {
 		            "Name": "Luisa",
 		            "Gender": "Female",
 		            "Age": 29,
-		            "Country": "UE",
+		            "Country": "EU",
 		            "Degree": "Doctor",
 		            "Email": "luisa@email.com",
 		            "Rate": 110
@@ -181,7 +184,7 @@ export default {
 		            "Name": "Diego",
 		            "Gender": "Male",
 		            "Age": 39,
-		            "Country": "UE",
+		            "Country": "EU",
 		            "Degree": "Doctor",
 		            "Email": "diego@email.com",
 		            "Rate": 25
@@ -244,7 +247,7 @@ export default {
 		            "Name": "Javier",
 		            "Gender": "Male",
 		            "Age": 57,
-		            "Country": "UE",
+		            "Country": "EU",
 		            "Degree": "Doctor",
 		            "Email": "javier@email.com",
 		            "Rate": 178

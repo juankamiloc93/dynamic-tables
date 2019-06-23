@@ -20,28 +20,25 @@ export default {
                     "visible": true,
                     "id": true,	
                     "filters": {}
+                    
 	            },
 	            {                   
 		            "name": "Subject",		            
                     "visible": true,
-                    "filters": {}                    	
+                                      	
             	},
 	            {                    
 		            "name": "Customer Satisfaction",
                     "visible": true,
-                    "filters": [
-                        {"name": "50%", "status": true},
-                        {"name": "80%", "status": true},
-                        {"name": "90%", "status": true}
-                    ]		                              
+                                                  
 	            },
 	            {                    
                     "name": "Priority",
                     "visible": true,
                     "filters": [
-                        {"name": "Low", "status": true},
-                        {"name": "Medium", "status": true},
-                        {"name": "Hight", "status": true}
+                        {"name": "Low", "status": true, "style": "alert alert-secondary"},
+                        {"name": "Medium", "status": true, "style": "alert alert-warning" },
+                        {"name": "Hight", "status": true, "style": "alert alert-danger"}
                     ]		                              
 	            },
 	            {                    
@@ -49,8 +46,8 @@ export default {
                     "visible": true,
                     "filters": [
                         {"name": "Pending", "status": true},
-                        {"name": "Opened", "status": true},
-                        {"name": "Solved", "status": true}
+                        {"name": "Opened", "status": true, "style": "alert alert-info"},
+                        {"name": "Solved", "status": true, "style": "alert alert-success"}
                     ]                		            	
 	            }
             ],
