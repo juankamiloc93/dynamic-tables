@@ -171,15 +171,14 @@ export default {
 
 <style>
 .scrollable{
-    max-height: 500px;
+    max-height: 550px;
     min-height: 300px;
     overflow-y: auto;
 }
-.headfix{
-    position:absolute;
-    text-align: center;
-    display: block;
-    
+table thead th{  
+    position: sticky;    
+    top: 0;
+    z-index: 1;    
 }
 
 </style>

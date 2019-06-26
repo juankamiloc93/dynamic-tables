@@ -55,7 +55,9 @@ export default {
 <style>
     .progress{
         width: 200px;
-    }
+    } 
+        
 </style>
+
 
 
