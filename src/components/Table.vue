@@ -21,17 +21,21 @@
             </div>        
         </div>        
         <!--Table-->
+        <div class="scrollable">
         <table class="table table-hover table-bordered">
-            <!--Columns-->
-            <thead>
-                <tr>
-                    <th class="bg-dark" v-for="(itemHead, indexHead) of getHead" :key="indexHead">                        
-                        <Column
+            <!--Columns-->                     
+            <thead class="head fix">                
+                <tr>                    
+                    <th class="bg-dark" v-for="(itemHead, indexHead) of getHead" :key="indexHead">                                                                 
+                        <Column class=""                        
                             :name="itemHead['name']"
-                            :filters="itemHead['filters']">
-                        </Column>                       
-                    </th>                   
-                </tr>                
+                            :filters="itemHead['filters']"
+                            :summary="getSummary[indexHead]"
+                            :total="getTotalSummary"
+                            >
+                        </Column>                                          
+                    </th>                                     
+                </tr>                             
             </thead>
             <!--body-->
             <tbody>
@@ -41,7 +45,17 @@
                     </td>                                     
                 </tr>               
             </tbody>
-        </table>                               
+        </table>
+        </div>
+        <div class="bg-dark">
+            <span class="text-light">
+                Total items: {{getTotalSummary}}
+            </span>
+            <span> - </span>
+            <span class="text-light">
+                Filtered items: {{getFilterSummary}}
+            </span>
+        </div>                                      
     </div>
 </template>
 
@@ -71,8 +85,7 @@ export default {
                     style = filters[index].style
                     find = true
                 }
-            }
-            console.log(style)
+            }            
             return style
         }
     },
@@ -102,6 +115,38 @@ export default {
             })
             return body                                        
         },
+        getTotalSummary: function(){
+            return this.body.length
+        },
+        getFilterSummary: function(){
+            return this.getBody.length
+        },
+        getSummary: function(){
+            var summary = new Array
+            this.getHead.forEach((headItem, headIndex) => {
+                if(headItem.filters){
+                    summary.push(new Array)                    
+                    headItem.filters.forEach(filterItem => {                        
+                        summary[headIndex].push({name: filterItem.name, amount: 0})                        
+                    })                   
+                }else{
+                    summary.push(null)
+                }
+            })
+            this.body.forEach(bodyItem => {
+                summary.forEach((summaryItem, summaryIndex) => {
+                    var found = false
+                    for(var filterIndex=0; summaryItem!=null && !found && filterIndex<summaryItem.length; filterIndex++){
+                       
+                        if(bodyItem[this.getHead[summaryIndex].name].toString() == summaryItem[filterIndex].name.toString()){                            
+                            summaryItem[filterIndex].amount += 1
+                            found = true
+                        }
+                    }
+                })
+            })
+            return summary
+        },
         getHead: function(){
             var head = new Array          
             this.head.forEach(headItem => {
@@ -110,8 +155,7 @@ export default {
                }
             })           
            return head           
-        },
-       
+        },       
         getActiveHead: function(){
             var head = new Array          
             this.head.forEach(headItem => {
@@ -124,4 +168,20 @@ export default {
     } 
 }
 </script>
+
+<style>
+.scrollable{
+    max-height: 500px;
+    min-height: 300px;
+    overflow-y: auto;
+}
+.headfix{
+    position:absolute;
+    text-align: center;
+    display: block;
+    
+}
+
+</style>
+
 

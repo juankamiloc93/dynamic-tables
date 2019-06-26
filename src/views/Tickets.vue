@@ -19,7 +19,7 @@ export default {
 		            "name": "User Name",		            
                     "visible": true,
                     "id": true,	
-                    "filters": {}
+                    "filters": []
                     
 	            },
 	            {                   
@@ -37,7 +37,7 @@ export default {
                     "visible": true,
                     "filters": [
                         {"name": "Low", "status": true, "style": "alert alert-secondary"},
-                        {"name": "Medium", "status": true, "style": "alert alert-warning" },
+                        {"name": "Medium", "status": true, "style": "alert alert-warning"},
                         {"name": "Hight", "status": true, "style": "alert alert-danger"}
                     ]		                              
 	            },
@@ -45,7 +45,7 @@ export default {
                     "name": "Status",
                     "visible": true,
                     "filters": [
-                        {"name": "Pending", "status": true},
+                        {"name": "Pending", "status": true, "amount": 0},
                         {"name": "Opened", "status": true, "style": "alert alert-info"},
                         {"name": "Solved", "status": true, "style": "alert alert-success"}
                     ]                		            	

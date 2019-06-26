@@ -5,11 +5,16 @@
             <span>{{name}} </span>
         </button>
          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">                                                              
-            <li v-for="(filterItem, indexFilter) of filters" :key="indexFilter" class="dropdown-item ">
+            <li v-for="(filterItem, indexFilter) of filters" :key="indexFilter" class="dropdown-item ">                
                 <input type="checkbox" v-model="filters[indexFilter].status">
                 <span>{{filterItem['name']}}</span>
-                <button class="btn text-danger" @click="deleteFilter(indexFilter)">X</button>                                 
-            </li>               
+                <button class="btn text-danger" @click="deleteFilter(indexFilter)">X</button>               
+                <div class="progress" role="progressbar" aria-valuenow="100" aria-voluemin="0" aria-valuemax="100"
+                    :style="{'width': summary[indexFilter].amount/total*100 + '%' }">
+                    {{summary[indexFilter].amount}}                                      
+                </div>
+                <div class="dropdown-divider"></div>                                 
+            </li>                          
             <li class="dropdown-item">
                 <div class="btn-group">
                     <input type="text" v-model="newFilter">
@@ -25,7 +30,9 @@ export default {
     name: 'Column',
     props: {
         name: '',
-        filters: {}                     
+        filters: {},
+        summary: {},
+        total: 0                    
     },
     data(){
         return {
@@ -45,4 +52,10 @@ export default {
     }
 }
 </script>
+<style>
+    .progress{
+        width: 200px;
+    }
+</style>
+
 
